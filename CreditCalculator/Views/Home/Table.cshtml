@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CreditCalculator.Models.PaymentModel>
+
+@{
+    ViewBag.Title = "График";
+}
+
+<div class="col-sm-12">
+    <table class="result-table table table-hover">
+        <thead>
+            <tr>
+                <th>Номер платежа</th>
+                <th>Дата платежа</th>
+                <th>Сумма платежа, руб.</th>
+                <th>Платеж по телу, руб</th>
+                <th>Платеж по %, руб</th>
+                <th>Остаток долга,руб</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @ViewBag.Annuitet
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TermPersent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Term)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Debt)
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="item">
+                Итого:
+                <span>@ViewBag.Total руб.</span>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="item">
+                Переплаты по кредиту:
+                <span>@ViewBag.Overs руб.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="btn_wrap">
+        @Html.ActionLink("Назад", "Index", "Home", null, new { @class="btn btn-primary btn-large"})
+    </div>
+</div>
